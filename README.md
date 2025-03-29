@@ -40,6 +40,4 @@ README.md
 
 Provides project documentation, including an overview, installation instructions, and usage details.
 
-.gitignore
 
-Specifies files and folders to ignore (such as large data files, virtual environments, etc.).
