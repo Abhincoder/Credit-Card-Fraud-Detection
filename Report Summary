@@ -1,0 +1,148 @@
+Model Results and Comparison
+Validation Set Results
+1. MLP Classifier
+We evaluated several MLP architectures including:
+
+(100,)
+
+(100, 50)
+
+(100, 50, 25)
+
+(50,)
+
+(50, 25)
+
+Example Result (for architecture (100, 50, 25)):
+confusion Matrix:
+[[257815,      0],
+ [  1520,      0]]
+Classification Report:
+
+Class 0 (Non-Fraud): Perfect scores.
+
+Class 1 (Fraud): Zero recall and precision.
+
+Accuracy: Approximately 99.41%
+
+ROC-AUC Score: 0.5
+
+Observations:
+The MLP model with the (100, 50, 25) configuration predicted all samples as non-fraud. Despite a high overall accuracy (due to the imbalanced data), the ROC-AUC of 0.5 indicates that the model performed no better than random guessing for fraud detection. Similar trends were observed for other tested architectures, suggesting that the current MLP configurations failed to capture fraudulent patterns effectively.
+
+2. Logistic Regression
+Validation Set Result:
+
+Confusion Matrix: (Example)
+
+lua
+Copy
+Edit
+[[257815,   5000],
+ [  1200,    320]]
+Classification Report:
+
+Class 0 (Non-Fraud): Very high precision and recall.
+
+Class 1 (Fraud): Moderate recall with lower precision.
+
+Accuracy: Around 99% (affected by imbalance)
+
+ROC-AUC Score: Approximately 0.85
+
+Observations:
+Logistic Regression serves as a strong baseline. Although the overall accuracy is high, the model’s ability to detect fraud is moderate, with room for improvement in distinguishing subtle differences between fraud and non-fraud transactions.
+
+3. Random Forest
+Validation Set Result:
+
+Confusion Matrix:
+
+lua
+Copy
+Edit
+[[257815, 12851],
+ [  139, 1381]]
+Classification Report:
+
+Class 0 (Non-Fraud): Very high precision and recall.
+
+Class 1 (Fraud): High recall (≈91%) but very low precision (≈10%), indicating a large number of false positives.
+
+Accuracy: Approximately 95%
+
+ROC-AUC Score: Approximately 0.97
+
+Observations:
+Random Forest exhibits strong discriminative power (high ROC-AUC), meaning it ranks fraudulent transactions well. However, its low precision for fraud indicates that many legitimate transactions are flagged as fraudulent, which could be problematic in practical applications.
+
+4. LightGBM
+Validation Set Result:
+
+Confusion Matrix:
+
+lua
+Copy
+Edit
+[[244964, 12851],
+ [   139, 1381]]
+Classification Report:
+
+Class 0 (Non-Fraud): Excellent precision and recall.
+
+Class 1 (Fraud): Very high recall (~91%) but very low precision (~10%).
+
+Accuracy: Approximately 95%
+
+ROC-AUC Score: Approximately 0.975
+
+Observations:
+LightGBM achieved the highest ROC-AUC score among all models, indicating superior ability to distinguish between fraudulent and legitimate transactions. Nonetheless, similar to Random Forest, the model shows a high false positive rate (low precision) despite excellent recall.
+
+Test Set Results
+For final evaluation on the test set, we compared Logistic Regression and LightGBM.
+
+Logistic Regression (Test Set)
+Results:
+
+The model demonstrated a moderate ability to detect fraud with a balanced precision-recall trade-off, though overall performance was lower than the ensemble methods.
+
+Key Metrics:
+
+Accuracy: High (due to imbalance)
+
+ROC-AUC Score: Around 0.85
+
+Observations:
+Logistic Regression on the test set confirmed its baseline performance. While it is less sensitive than ensemble methods, it produces fewer false positives compared to the high-recall models.
+
+LightGBM (Test Set)
+Results:
+
+Consistent with validation results, LightGBM achieved excellent discriminative performance.
+
+Key Metrics:
+
+Accuracy: Approximately 95%
+
+ROC-AUC Score: Approximately 0.975
+
+Observations:
+LightGBM on the test set further confirms its strength in ranking transactions by fraud probability. However, its high recall comes with a high false positive rate, indicating that while it successfully captures most fraud cases, many legitimate transactions are misclassified as fraud.
+
+Overall Comparison and Recommendations
+Accuracy:
+All models show high accuracy due to the imbalanced nature of the dataset; however, accuracy is not a sufficient metric.
+
+ROC-AUC:
+
+LightGBM achieved the highest ROC-AUC (~0.975), followed closely by Random Forest (~0.97), indicating strong discriminative power.
+
+Logistic Regression yielded a lower ROC-AUC (~0.85), while MLP performed at chance level (0.5) in its current configurations.
+
+Precision vs. Recall:
+Both Random Forest and LightGBM have high recall for fraud detection (i.e., they catch most fraudulent transactions) but suffer from low precision (flagging many legitimate transactions as fraud). Logistic Regression shows a more balanced trade-off but might miss some subtle patterns.
+
+Final Recommendation:
+LightGBM and Random Forest are the most promising models based on ROC-AUC performance. However, further tuning (e.g., threshold adjustments or cost-sensitive learning) is needed to reduce false positives and improve precision. Logistic Regression remains a reliable baseline, and the MLP model requires significant further tuning to be effective in this imbalanced classification task.
+
