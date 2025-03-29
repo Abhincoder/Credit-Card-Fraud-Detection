@@ -11,13 +11,13 @@ This project aims to build a machine learning model to distinguish fraudulent tr
 ## Repository Structure
 
 Th/Credit_Card_Fraud_Detection
-├── data/                   # Raw data files or instructions on how to obtain them
-├── notebooks/              # Jupyter Notebooks for EDA and experimentation
-├── src/                    # Python scripts for preprocessing, modeling, and evaluation
-│   ├── preprocessing.py    # Data cleaning and feature engineering code
-│   ├── modeling.py         # Code for training and evaluating models
-│   └── evaluation.py       # Code to generate evaluation reports
-├── models/                 # (Optional) Saved model files (e.g., pickle files)
-├── requirements.txt        # List of dependencies (e.g., pandas, numpy, scikit-learn, lightgbm, etc.)
-├── README.md               # Documentation and instructions for the project
-└── .gitignore              # Files and folders to ignore (e.g., large data files, local environments)
+-**├── data/                   # Raw data files or instructions on how to obtain them.
+-**├── notebooks/              # Jupyter Notebooks for EDA and experimentation.
+-**├── src/                    # Python scripts for preprocessing, modeling, and evaluation.
+-**│   ├── preprocessing.py    # Data cleaning and feature engineering code.
+-**│   ├── modeling.py         # Code for training and evaluating models.
+-**│   └── evaluation.py       # Code to generate evaluation reports.
+-**├── models/                 # (Optional) Saved model files (e.g., pickle files).
+-**├── requirements.txt        # List of dependencies (e.g., pandas, numpy, scikit-learn, lightgbm, etc.).
+-**├── README.md               # Documentation and instructions for the project.
+-**└── .gitignore              # Files and folders to ignore (e.g., large data files, local environments).
