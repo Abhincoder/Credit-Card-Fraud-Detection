@@ -18,20 +18,6 @@ notebooks/
 
 Holds Jupyter Notebooks for Exploratory Data Analysis (EDA) and experimentation.
 
-src/
-
-Contains Python scripts for:
-
-preprocessing.py: Data cleaning and feature engineering.
-
-modeling.py: Training and evaluating machine learning models.
-
-evaluation.py: Generating evaluation reports and metrics.
-
-models/
-
-(Optional) Stores saved model files (e.g., pickle files).
-
 requirements.txt
 
 Lists all project dependencies (e.g., pandas, numpy, scikit-learn, lightgbm, etc.).
